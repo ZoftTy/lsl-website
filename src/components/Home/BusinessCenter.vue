@@ -7,57 +7,57 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
     <TitleCenterLayout>业务中心</TitleCenterLayout>
 
     <el-row class="image-list">
+      <!-- 第一列 -->
       <el-col class="one-column" :md="16">
+        <!-- 第一行 -->
         <el-row class="one-row">
           <el-col class="item">
-            <img src="~assets/images/businessCenter-01.png" alt="" />
-            <h3>业务中心</h3>
+            <img src="~assets/images/businessCenter-01.png" alt />
+            <router-link to="/business">
+              <h3>业务中心</h3>
+            </router-link>
           </el-col>
         </el-row>
 
+        <!-- 第二行 -->
         <el-row class="two-row">
           <el-col class="item-wrap" :md="12">
             <div class="item">
-              <img src="~assets/images/businessCenter-02.png" alt="" />
-              <a class="btn" href="">
+              <img src="~assets/images/businessCenter-02.png" alt />
+              <router-link class="btn" to="/business?scroll=业务板块">
                 <i class="iconfont icon-youjiantou"></i>
-              </a>
+              </router-link>
               <div class="content">
                 <h4>业务板块</h4>
-                <p>
-                  教育投资：联合专业院校，进行教育合作投资；合作办学：联合教育机构共同合作开设学校；
-                </p>
+                <p>教育投资：联合专业院校，进行教育合作投资；合作办学：联合教育机构共同合作开设学校；</p>
               </div>
             </div>
           </el-col>
           <el-col class="item-wrap" :md="12">
             <div class="item">
-              <img src="~assets/images/businessCenter-03.png" alt="" />
-              <a class="btn" href="">
+              <img src="~assets/images/businessCenter-03.png" alt />
+              <router-link class="btn" to="/business?scroll=院校开发">
                 <i class="iconfont icon-youjiantou"></i>
-              </a>
+              </router-link>
               <div class="content">
-                <h4>业务板块</h4>
-                <p>
-                  教育投资：联合专业院校，进行教育合作投资；合作办学：联合教育机构共同合作开设学校；
-                </p>
+                <h4>院校开发</h4>
+                <p>通过开发合作院校，利用我们优势核心竞争力电子商务专业电子商务专业、幼儿教育专业、工业机器人专业项目化教学，共同促进合作项目。</p>
               </div>
             </div>
           </el-col>
         </el-row>
       </el-col>
 
+      <!-- 第二列 -->
       <el-col class="two-column item-wrap" :md="8">
         <div class="item">
-          <img src="~assets/images/businessCenter-04.png" alt="" />
-          <a class="btn" href="">
+          <img src="~assets/images/businessCenter-04.png" alt />
+          <router-link class="btn" to="/business?scroll=服务模式">
             <i class="iconfont icon-youjiantou"></i>
-          </a>
+          </router-link>
           <div class="content">
-            <h4>业务板块</h4>
-            <p>
-              教育投资：联合专业院校，进行教育合作投资；合作办学：联合教育机构共同合作开设学校；
-            </p>
+            <h4>服务模式</h4>
+            <p>校友服务：为校友提供终生的免费就业推荐工作；职业核心能力培训体系：开展大学生职业核心能力培训；开展企业岗位能力提升培训；</p>
           </div>
         </div>
       </el-col>
@@ -101,7 +101,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
 
       // 生成遮罩
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;

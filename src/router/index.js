@@ -71,6 +71,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
+  // 跳转路由重置滚动距离
+  scrollBehavior() {
+    return { top: 0 }
+  },
   routes
 })
 

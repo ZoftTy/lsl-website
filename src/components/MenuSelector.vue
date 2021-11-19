@@ -1,20 +1,28 @@
 <script setup>
 import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
 import { pushLink } from 'utils/router.js'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const { data, offset, scroll, active } = defineProps({
+  // 菜单数据
   data: {
     type: Array,
     required: true
   },
+  // 偏移的值
   offset: {
     type: Number,
     default: 0
   },
+  // 是否是滚动监听类型
   scroll: {
     type: Boolean,
     default: false
   },
+  // 激活的选项
   active: {
     type: [String, Object],
     default() {
@@ -23,9 +31,14 @@ const { data, offset, scroll, active } = defineProps({
   }
 })
 
-// 滚动到指定位置的函数
-const scrollPosition = (item, offset = 0) => {
-  const element = document.querySelector(item.point)
+/**
+ * 跳转到页面某处的函数
+ * @param id 元素id
+ * @param offset 偏移的值
+ * @param isAnimation 是否有动画
+ */
+const scrollPosition = (id, offset = 0, isAnimation) => {
+  const element = document.querySelector(id)
 
   if (element) {
     var elementPosition = element.offsetTop
@@ -35,7 +48,7 @@ const scrollPosition = (item, offset = 0) => {
     if (elementPosition != offset) {
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: isAnimation ? 'smooth' : 'auto'
       })
     }
   }
@@ -75,6 +88,14 @@ const click = item => {
     pushLink(item.url)
   }
 }
+
+onMounted(() => {
+  // 判断路由参数是否有指定跳转到那里去
+  if (route.query.scroll) {
+    // 如果有就跳转
+    scrollPosition('#' + route.query.scroll, offset, false)
+  }
+})
 </script>
 
 <template>
@@ -85,9 +106,7 @@ const click = item => {
       :class="{ active: active == item.name || active.value == item.name }"
       :key="item"
       @click="click(item)"
-    >
-      {{ item.title }}
-    </li>
+    >{{ item.title }}</li>
   </ul>
 </template>
 

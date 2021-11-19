@@ -4,10 +4,29 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
 import { reactive, ref } from '@vue/reactivity'
 
 const educationCarousel = ref()
+
 const educationData = reactive([
-  '/images/carousel/1.jpg',
-  '/images/carousel/2.jpg',
-  '/images/carousel/3.jpg'
+  {
+    image: '/images/carousel/1.jpg',
+    date: '2020-03-17',
+    title: '广东省高新技术职业培训学院',
+    content: '广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。',
+    url: '/education/vocational-education/article/3'
+  },
+  {
+    image: '/images/carousel/2.jpg',
+    date: '2020-03-17',
+    title: '广东省高新技术职业培训学院',
+    content: '广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。',
+    url: '/education/vocational-education/article/4'
+  },
+  {
+    image: '/images/carousel/3.jpg',
+    date: '2020-03-17',
+    title: '广东省高新技术职业培训学院',
+    content: '广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。',
+    url: '/education/vocational-education/article/5'
+  },
 ])
 </script>
 
@@ -32,19 +51,13 @@ const educationData = reactive([
           <el-carousel-item v-for="item in educationData" :key="item">
             <el-row class="education-carousel">
               <el-col class="img-wrap" :md="12" :sm="24">
-                <img class="carousel-img" :src="item" alt="" />
+                <img class="carousel-img" :src="item.image" alt />
               </el-col>
               <el-col class="content" :md="12" :sm="24">
-                <span class="time">2020-03-17</span>
-                <h2>广东省高新技术职业培训学院</h2>
-                <p>
-                  广东省高新技术职业培训学院成立于2008年，是一所培养中、
-                  高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，
-                  广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花
-                  都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便
-                  利，环境优越，企业云集，可为学子提供良好的实习就业平台。
-                </p>
-                <a class="link" href="#">了解详情</a>
+                <span class="time">{{ item.date }}</span>
+                <h2>{{ item.title }}</h2>
+                <p>{{ item.content }}</p>
+                <router-link class="link" :to="item.url">了解详情</router-link>
               </el-col>
             </el-row>
           </el-carousel-item>
@@ -72,7 +85,7 @@ const educationData = reactive([
   }
 
   // 背景
-  background-image: url('/images/education-system.png');
+  background-image: url("/images/education-system.png");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -146,10 +159,12 @@ const educationData = reactive([
 
         overflow: hidden;
 
-        img {
+        .carousel-img {
           display: block;
           width: 100%;
           height: 100%;
+
+          object-fit: cover;
         }
       }
 

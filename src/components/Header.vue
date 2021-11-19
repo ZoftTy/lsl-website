@@ -4,7 +4,6 @@ import { pushLink } from 'utils/router.js'
 import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
-const route = useRoute()
 
 const navList = reactive([
   { title: '首页', path: '/home' },
@@ -22,12 +21,12 @@ const activeNavIndex = ref(0)
 const isShowList = ref(false)
 
 // 路由守卫
-router.afterEach(({ fullPath }) => {
+router.afterEach(({ path }) => {
   // 点击后关闭列表
   setTimeout(() => (isShowList.value = false), 100)
 
-  const findNavIndex = navList.findIndex(({ path }) => {
-    return path == '/' + fullPath.split('/')[1]
+  const findNavIndex = navList.findIndex(({ path: itemPath }) => {
+    return itemPath == '/' + path.split('/')[1]
   })
 
   if (findNavIndex != -1) {
@@ -40,7 +39,9 @@ router.afterEach(({ fullPath }) => {
   <el-row class="header max-width-wrap" justify="space-between">
     <!-- LOGO -->
     <el-col class="logo-wrap" :md="4" :sm="4" :xs="{ span: 16, offset: 4 }">
-      <img class="logo" src="~assets/logo.png" alt="LOGO" />
+      <a href="/">
+        <img class="logo" src="~assets/logo.png" alt="LOGO" />
+      </a>
     </el-col>
 
     <!-- 按钮 -->
