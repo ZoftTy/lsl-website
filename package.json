@@ -1,6 +1,7 @@
 {
   "name": "my-hsl-website",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
