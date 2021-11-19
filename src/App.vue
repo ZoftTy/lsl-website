@@ -40,7 +40,6 @@
 
     background: white;
   }
-
   .main-wrap {
     width: 100%;
 
