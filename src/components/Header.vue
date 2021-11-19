@@ -64,9 +64,7 @@ router.afterEach(({ fullPath }) => {
             class="link"
             @click="pushLink(item.path)"
             :class="{ active: activeNavIndex == index }"
-          >
-            {{ item.title }}
-          </span>
+          >{{ item.title }}</span>
         </el-col>
       </el-row>
     </el-col>
@@ -81,10 +79,21 @@ router.afterEach(({ fullPath }) => {
 
   text-align: center;
 
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+
+    height: 48px;
+    .logo {
+      display: block;
+      height: 100%;
+    }
+  }
+
   @media @xs {
     // 背景遮罩
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -129,7 +138,7 @@ router.afterEach(({ fullPath }) => {
 
       // 第一个线
       &::before {
-        content: '';
+        content: "";
         display: block;
         position: absolute;
 
@@ -139,12 +148,13 @@ router.afterEach(({ fullPath }) => {
         height: 4px;
         background-color: black;
         border-radius: 2px;
-        transition: transform 0.4s ease-in-out, top 0.4s ease-in-out, bottom 0.4s ease-in-out;
+        transition: transform 0.4s ease-in-out, top 0.4s ease-in-out,
+          bottom 0.4s ease-in-out;
       }
 
       // 第二个线
       &::after {
-        content: '';
+        content: "";
         display: block;
         position: absolute;
         width: 100%;
@@ -154,7 +164,8 @@ router.afterEach(({ fullPath }) => {
         height: 4px;
         background-color: black;
         border-radius: 2px;
-        transition: transform 0.4s ease-in-out, top 0.4s ease-in-out, bottom 0.4s ease-in-out;
+        transition: transform 0.4s ease-in-out, top 0.4s ease-in-out,
+          bottom 0.4s ease-in-out;
       }
     }
   }
@@ -207,7 +218,7 @@ router.afterEach(({ fullPath }) => {
         }
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           left: 0;
           bottom: -10px;
@@ -263,7 +274,7 @@ router.afterEach(({ fullPath }) => {
     }
 
     &::after {
-      content: '';
+      content: "";
       display: block;
 
       position: absolute;
