@@ -1,10 +1,10 @@
 <script setup>
-import BusinessCenterLayout from 'layouts/BusinessCenterLayout.vue'
+import GraphicLayout from 'layouts/GraphicLayout.vue'
 </script>
 
 <template>
   <div class="college-development max-width-wrap">
-    <BusinessCenterLayout>
+    <GraphicLayout>
       <!-- 标题 -->
       <template v-slot:title>院校开发</template>
       <!-- 图片 -->
@@ -26,7 +26,7 @@ import BusinessCenterLayout from 'layouts/BusinessCenterLayout.vue'
           　　工业机器人专业专注于培养德、智、体、美全面发展，具有良好职业道德和人文素养，掌握机械制图、机械设计、电工与电子、电气控制、液压与气动、PLC应用技术、工业机器人应用技术等基本知识，具备工业机器人系统应用能力，从事工业机器人及工作站系统的安装与调试、维护与维修、技术与生产管理、服务与营销等工作的高素质技术技能人才。
         </p>
       </template>
-    </BusinessCenterLayout>
+    </GraphicLayout>
   </div>
 </template>
 

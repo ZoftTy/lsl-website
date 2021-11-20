@@ -1,6 +1,5 @@
 <script setup>
-import BusinessCenterLayout from 'layouts/BusinessCenterLayout.vue'
-import ItemList from 'components/BusinessCenter/ItemList.vue'
+import GraphicLayout from 'layouts/GraphicLayout.vue'
 
 const list = [
   '校友服务：为校友提供终生的免费就业推荐工作。',
@@ -13,7 +12,7 @@ const list = [
 
 <template>
   <div class="service-mode max-width-wrap">
-    <BusinessCenterLayout height="var(--height)">
+    <GraphicLayout height="var(--height)">
       <!-- 标题 -->
       <template v-slot:title>服务模式</template>
       <!-- 图片 -->
@@ -24,7 +23,7 @@ const list = [
       <template v-slot:default>
         <ItemList :data="list" />
       </template>
-    </BusinessCenterLayout>
+    </GraphicLayout>
   </div>
 </template>
 

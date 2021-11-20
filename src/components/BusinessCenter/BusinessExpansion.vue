@@ -1,10 +1,10 @@
 <script setup>
-import BusinessCenterLayout from 'layouts/BusinessCenterLayout.vue'
+import GraphicLayout from 'layouts/GraphicLayout.vue'
 </script>
 
 <template>
   <div class="business-expansion max-width-wrap">
-    <BusinessCenterLayout>
+    <GraphicLayout>
       <!-- 标题 -->
       <template v-slot:title>拓展业务</template>
       <!-- 图片 -->
@@ -26,7 +26,7 @@ import BusinessCenterLayout from 'layouts/BusinessCenterLayout.vue'
           　　通过严格把控专业建设标准、人才培养方案、就业流程体系等服务环节，已经形成良好有序的精准生源吸引到应用人才输出的高效持续轨道，为各类型企业输出更多有用、实用的未来栋梁之才。
         </p>
       </template>
-    </BusinessCenterLayout>
+    </GraphicLayout>
   </div>
 </template>
 

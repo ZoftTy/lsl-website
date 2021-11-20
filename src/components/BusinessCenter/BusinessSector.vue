@@ -1,6 +1,5 @@
 <script setup>
-import BusinessCenterLayout from 'layouts/BusinessCenterLayout.vue'
-import ItemList from 'components/BusinessCenter/ItemList.vue'
+import GraphicLayout from 'layouts/GraphicLayout.vue'
 
 const list = [
   '教育投资：联合专业院校，进行教育合作投资。',
@@ -13,7 +12,7 @@ const list = [
 
 <template>
   <div class="business-sector max-width-wrap">
-    <BusinessCenterLayout>
+    <GraphicLayout>
       <!-- 标题 -->
       <template v-slot:title>业务板块</template>
       <!-- 图片 -->
@@ -24,7 +23,7 @@ const list = [
       <template v-slot:default>
         <ItemList :data="list" />
       </template>
-    </BusinessCenterLayout>
+    </GraphicLayout>
   </div>
 </template>
 
