@@ -37,7 +37,7 @@ const { data, offset, scroll, active } = defineProps({
  * @param offset 偏移的值
  * @param isAnimation 是否有动画
  */
-const scrollPosition = (id, offset = 0, isAnimation) => {
+const scrollPosition = (id, offset = 0, isAnimation = true) => {
   const element = document.querySelector(id)
 
   if (element) {
@@ -82,7 +82,7 @@ const click = item => {
   // 判断是否是滚动类型
   if (scroll) {
     // 滚动到指定位置
-    scrollPosition(item, offset)
+    scrollPosition(item.point, offset)
   } else {
     // 跳转路由
     pushLink(item.url)
