@@ -1,7 +1,7 @@
 <script setup>
 import HeaderImageLayout from 'layouts/HeaderImageLayout.vue'
 
-import { computed, reactive } from '@vue/reactivity'
+import { computed, reactive, ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
 import { useRoute } from 'vue-router'
 
@@ -39,6 +39,17 @@ onMounted(() => {
   getData('institutions')
   getData('enterprise')
 })
+
+const show = ref(1)
+const showText = ref('显示更多')
+
+const showMore = () => {
+  if (show.value > data.institutions.length) {
+    showText.value = '没有更多了'
+  }
+  show.value += 4
+}
+
 </script>
 
 <template>
@@ -60,7 +71,8 @@ onMounted(() => {
     <div class="list-wrap max-width-wrap" v-if="route.params.category == 'institutions'">
       <GraphicItem
         class="list-item"
-        v-for="item in data.institutions"
+        v-for="(item, index) in data.institutions"
+        v-show="index < 4 || show >= index"
         :key="item"
         :id="item.id"
         :title="item.title"
@@ -69,6 +81,10 @@ onMounted(() => {
         :content="item.content"
         :date="item.date"
       />
+
+      <div class="show-more">
+        <el-button @click="showMore" type="primary">{{ showText }}</el-button>
+      </div>
     </div>
 
     <!-- 校企合作 -->
@@ -107,6 +123,11 @@ onMounted(() => {
     &:nth-last-child(1) {
       margin-bottom: 0;
     }
+  }
+
+  .show-more {
+    display: flex;
+    justify-content: center;
   }
 }
 

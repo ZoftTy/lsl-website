@@ -71,6 +71,13 @@ const routes = [
     component: () => import('views/AboutUs.vue')
   },
 
+  // 文章详情页
+  {
+    path: '/:category(education|cooperation|news)/:sub(vocational-education|vocational-training|institutions|enterprise|company|industry|default)/article/:id',
+    name: 'Articles',
+    component: () => import('views/Articles.vue')
+  },
+
   // 404
   {
     path: '/:pathMatch(.*)*',
