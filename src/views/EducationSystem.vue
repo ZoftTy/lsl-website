@@ -43,7 +43,7 @@ onBeforeRouteUpdate(to => getData(to.params.category))
     <!-- 头部图片和选项卡布局 -->
     <HeaderImageLayout>
       <template v-slot:image>
-        <img src="/images/education-system-header.png" alt="" />
+        <img src="/images/education-system-header.jpg" alt="" />
       </template>
 
       <!-- 菜单选择器 -->

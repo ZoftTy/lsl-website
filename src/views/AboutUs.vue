@@ -34,7 +34,7 @@ const menuData = [
     <!-- 头部图片和选项卡布局 -->
     <HeaderImageLayout>
       <template v-slot:image>
-        <img src="/images/education-system-header.png" alt="" />
+        <img src="/images/about-us-header.jpg" alt />
       </template>
 
       <!-- 菜单选择器 -->

@@ -39,7 +39,7 @@ const menuData = [
     <HeaderImageLayout>
       <!-- 图片 -->
       <template v-slot:image>
-        <img src="/images/business-center-header.png" alt="" />
+        <img src="/images/business-center-header.jpg" alt="" />
       </template>
 
       <!-- 菜单选择器 -->

@@ -9,18 +9,28 @@ const routes = [
     name: 'Index',
     redirect: '/home'
   },
+
   // 主页
   {
     path: '/home',
     name: 'Home',
     component: Home
   },
+
+  // 企业文化
+  {
+    path: '/culture',
+    name: 'CorporateCulture',
+    component: () => import('views/CorporateCulture.vue')
+  },
+
   // 业务中心
   {
     path: '/business',
     name: 'BusinessCenter',
     component: () => import('views/BusinessCenter.vue')
   },
+
   // 教育体系
   {
     path: '/education',

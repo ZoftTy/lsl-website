@@ -47,7 +47,7 @@ onMounted(() => {
     <HeaderImageLayout>
       <!-- 图片 -->
       <template v-slot:image>
-        <img src="/images/education-system-header.png" alt />
+        <img src="/images/working-together-header.jpg" alt />
       </template>
 
       <!-- 菜单选择器 -->
