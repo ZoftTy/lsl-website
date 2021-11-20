@@ -51,7 +51,8 @@ const educationData = reactive([
           <el-carousel-item v-for="item in educationData" :key="item">
             <el-row class="education-carousel">
               <el-col class="img-wrap" :md="12" :sm="24">
-                <img class="carousel-img" :src="item.image" alt />
+                <el-image class="carousel-img" :src="item.image" fit="cover"></el-image>
+                <!-- <img class="carousel-img" :src="item.image" alt /> -->
               </el-col>
               <el-col class="content" :md="12" :sm="24">
                 <span class="time">{{ item.date }}</span>
