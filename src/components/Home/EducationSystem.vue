@@ -11,7 +11,7 @@ const educationData = reactive([
     date: '2020-03-17',
     title: '广东省高新技术职业培训学院',
     content: '广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。',
-    url: '/education/vocational-education/article/3'
+    url: '/education/vocational-education/article/4'
   },
   {
     image: '/images/carousel/2.jpg',
@@ -25,7 +25,7 @@ const educationData = reactive([
     date: '2020-03-17',
     title: '广东省高新技术职业培训学院',
     content: '广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。',
-    url: '/education/vocational-education/article/5'
+    url: '/education/vocational-education/article/4'
   },
 ])
 </script>

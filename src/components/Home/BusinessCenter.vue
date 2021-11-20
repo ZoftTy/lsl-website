@@ -24,7 +24,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
           <el-col class="item-wrap" :md="12">
             <div class="item">
               <img src="~assets/images/businessCenter-02.png" alt />
-              <router-link class="btn" to="/business?scroll=业务板块">
+              <router-link class="btn" to="/business#业务板块">
                 <i class="iconfont icon-youjiantou"></i>
               </router-link>
               <div class="content">
@@ -36,7 +36,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
           <el-col class="item-wrap" :md="12">
             <div class="item">
               <img src="~assets/images/businessCenter-03.png" alt />
-              <router-link class="btn" to="/business?scroll=院校开发">
+              <router-link class="btn" to="/business#院校开发">
                 <i class="iconfont icon-youjiantou"></i>
               </router-link>
               <div class="content">
@@ -52,7 +52,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
       <el-col class="two-column item-wrap" :md="8">
         <div class="item">
           <img src="~assets/images/businessCenter-04.png" alt />
-          <router-link class="btn" to="/business?scroll=服务模式">
+          <router-link class="btn" to="/business#服务模式">
             <i class="iconfont icon-youjiantou"></i>
           </router-link>
           <div class="content">
@@ -186,7 +186,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
 
         overflow: hidden;
 
-        font-size: @content-font-size-3;
+        font-size: @content-font-size-2;
         text-overflow: ellipsis;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;

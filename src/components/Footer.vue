@@ -1,19 +1,22 @@
 <script setup>
+
+import { computed, reactive } from '@vue/reactivity'
+import { useRoute } from 'vue-router'
+
+import { pushLink } from 'utils/router'
+
+const route = useRoute()
+
 </script>
 
 <template>
   <div class="footer max-width-wrap">
     <el-row class="footer-top" justify="space-around">
       <el-col class="crumbs" :sm="12">
-        <span>携手合作</span>
-        <span>/</span>
-        <span>合作院校</span>
+        <span>{{ route.meta.title }}</span>
       </el-col>
       <el-col class="follow" :sm="12">
-        <a
-          href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA3NTE5MzQzMA==&scene=124#wechat_redirect"
-          class="link"
-        >
+        <a href="http://gzhsljy.com" class="link">
           <span>关注我们</span>
           <svg
             id="组_4"
@@ -45,23 +48,41 @@
         <el-row>
           <el-col class="business-center" :sm="8">
             <ul>
-              <li>业务中心</li>
-              <li>业务板块</li>
-              <li>院校开发</li>
-              <li>服务模式</li>
-              <li>拓展业务</li>
+              <li>
+                <router-link to="/business">业务中心</router-link>
+              </li>
+              <li>
+                <router-link to="/business#业务板块">业务板块</router-link>
+              </li>
+              <li>
+                <router-link to="/business#院校开发">院校开发</router-link>
+              </li>
+              <li>
+                <router-link to="/business#服务模式">服务模式</router-link>
+              </li>
+              <li>
+                <router-link to="/business#拓展业务">拓展业务</router-link>
+              </li>
             </ul>
           </el-col>
           <el-col class="working-together" :sm="8">
             <ul>
-              <li>携手合作</li>
-              <li>业务板块</li>
-              <li>院校开发</li>
+              <li>
+                <router-link to="/cooperation">携手合作</router-link>
+              </li>
+              <li>
+                <router-link to="/cooperation/institutions">合作院校</router-link>
+              </li>
+              <li>
+                <router-link to="/cooperation/enterprise">校企合作</router-link>
+              </li>
             </ul>
           </el-col>
           <el-col class="contact-us" :sm="8">
             <ul>
-              <li>联系我们</li>
+              <li>
+                <router-link to="/about#联系我们">联系我们</router-link>
+              </li>
               <li>020-8699-3876</li>
               <li>GX18598092445@163.com</li>
               <li>广州市花都区狮岭镇新花路9号</li>
@@ -92,10 +113,6 @@
 
     .crumbs {
       text-align: left;
-
-      span:nth-child(2) {
-        padding: 0 10px;
-      }
 
       @media @xs {
         display: none;
@@ -138,6 +155,15 @@
     .center-left {
       ul {
         list-style: none;
+
+        a {
+          text-decoration: none;
+          color: @color-grey;
+
+          &:hover {
+            color: @color-primary;
+          }
+        }
 
         li {
           margin: 10px 0;

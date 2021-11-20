@@ -17,7 +17,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
         </div>
         <div class="item">
           <div class="icon">2</div>
-          <span>020-8699-3876</span>
+          <span>GX18598092445@163.com</span>
         </div>
         <div class="item">
           <div class="icon">3</div>

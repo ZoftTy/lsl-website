@@ -7,56 +7,24 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
     <TitleCenterLayout>新闻资讯</TitleCenterLayout>
 
     <el-row :gutter="15" class="item-wrap">
-      <el-col class="item" :md="{ span: 4, offset: 2 }">
-        <img src="~/assets/images/businessCenter-01.png" alt="" />
-        <div class="content">
-          <h4>人民日报：双师课堂，为在线教育保驾续航</h4>
-          <span class="line"></span>
-          <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
-        </div>
-      </el-col>
-      <el-col class="item" :md="4">
-        <img src="~/assets/images/businessCenter-01.png" alt="" />
-        <div class="content">
-          <h4>你好，世界</h4>
-          <span class="line"></span>
-          <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
-        </div>
-      </el-col>
-      <el-col class="item" :md="4">
-        <img src="~/assets/images/businessCenter-01.png" alt="" />
-        <div class="content">
-          <h4>你好，世界</h4>
-          <span class="line"></span>
-          <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
-        </div>
-      </el-col>
-      <el-col class="item" :md="4">
-        <img src="~/assets/images/businessCenter-01.png" alt="" />
-        <div class="content">
-          <h4>你好，世界</h4>
-          <span class="line"></span>
-          <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
-        </div>
-      </el-col>
-      <el-col class="item" :md="4">
-        <img src="~/assets/images/businessCenter-01.png" alt="" />
-        <div class="content">
-          <h4>你好，世界</h4>
-          <span class="line"></span>
-          <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
-        </div>
+      <el-col
+        class="item"
+        v-for="(item, index) in [1, 2, 3, 4, 5]"
+        :md="{ span: 4, offset: index == 0 ? 2 : 0 }"
+      >
+        <router-link to="/news/industry/article/1">
+          <img src="~/assets/images/businessCenter-01.png" alt />
+          <div class="content">
+            <h4>人民日报：双师课堂，为在线教育保驾续航</h4>
+            <span class="line"></span>
+            <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
+          </div>
+        </router-link>
       </el-col>
     </el-row>
     <el-row justify="center">
       <el-col class="item-controller">
-        <el-pagination
-          :pager-count="5"
-          small
-          background
-          layout="prev, pager, next"
-          :total="50"
-        ></el-pagination>
+        <el-pagination :pager-count="5" small background layout="prev, pager, next" :total="50"></el-pagination>
       </el-col>
     </el-row>
   </div>
@@ -134,7 +102,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
         overflow: hidden;
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: 0;

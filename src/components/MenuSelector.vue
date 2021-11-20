@@ -88,14 +88,6 @@ const click = item => {
     pushLink(item.url)
   }
 }
-
-onMounted(() => {
-  // 判断路由参数是否有指定跳转到那里去
-  if (route.query.scroll) {
-    // 如果有就跳转
-    scrollPosition('#' + route.query.scroll, offset, false)
-  }
-})
 </script>
 
 <template>
