@@ -1,5 +1,29 @@
 <script setup>
 import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
+import { reactive } from 'vue';
+
+// 新闻资讯
+// GET: /articles?category=news?limit=6?nominate=true
+const newsData = reactive([
+  {
+    id: 1,
+    title: "职校、职高、技校、中专、大专的解读及区别",
+    description: "职校、职高、技校、中专、大专的解读及区别",
+    nominate: false,
+    category: 17,
+    cover: "http://dummyimage.com/234x60",
+    date: "2020-03-17"
+  },
+  {
+    id: 502,
+    title: "测色色色",
+    description: "12311111111111",
+    nominate: false,
+    category: 1,
+    cover: "http://zoft.work:1330/images/61b174fb54bca.JPG",
+    date: "2003-06-04"
+  }
+])
 </script>
 
 <template>
@@ -9,15 +33,15 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
     <el-row :gutter="15" class="item-wrap">
       <el-col
         class="item"
-        v-for="(item, index) in [1, 2, 3, 4, 5]"
+        v-for="(item, index) in newsData"
         :md="{ span: 4, offset: index == 0 ? 2 : 0 }"
       >
         <router-link to="/news/industry/article/1">
           <img src="~/assets/images/businessCenter-01.png" alt />
           <div class="content">
-            <h4>人民日报：双师课堂，为在线教育保驾续航</h4>
+            <h4>{{ item.title }}</h4>
             <span class="line"></span>
-            <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
+            <p>{{ item.description }}</p>
           </div>
         </router-link>
       </el-col>
