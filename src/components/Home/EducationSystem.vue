@@ -5,6 +5,8 @@ import { reactive, ref } from '@vue/reactivity'
 
 const educationCarousel = ref()
 
+// 首页-教育体系数据
+// GET: /articles?category=education?nominate=true?limit=6
 const educationData = reactive([
   {
     image: '/images/carousel/1.jpg',
@@ -32,6 +34,7 @@ const educationData = reactive([
 
 <template>
   <div class="education-system">
+    <!-- 标题 -->
     <TitleCenterLayout class="title">教育体系</TitleCenterLayout>
 
     <el-row class="max-width-wrap">
