@@ -3,7 +3,7 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
 import { reactive } from 'vue';
 
 // 新闻资讯
-// GET: /articles?category=news?limit=6?nominate=true
+// GET: /articles?category=news&limit=6&nominate=true
 const newsData = reactive([
   {
     id: 1,

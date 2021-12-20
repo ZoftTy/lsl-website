@@ -6,7 +6,7 @@ import { reactive, ref } from '@vue/reactivity'
 const educationCarousel = ref()
 
 // 首页-教育体系数据
-// GET: /articles?category=education?nominate=true?limit=6
+// GET: /articles?category=education&nominate=true&limit=6
 const educationData = reactive([
   {
     image: '/images/carousel/1.jpg',
