@@ -8,6 +8,7 @@ import AboutUs from 'components/Home/AboutUs.vue'
 
 import { reactive } from '@vue/reactivity'
 
+// 轮播图数据
 const carouselList = reactive([
   '/images/carousel/1.jpg'
   // '/images/carousel/2.jpg',

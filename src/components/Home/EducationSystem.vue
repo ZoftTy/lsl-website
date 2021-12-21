@@ -45,6 +45,7 @@ const toDetail = (id) => {
 
 <template>
   <div class="education-system">
+    <!-- 标题 -->
     <TitleCenterLayout class="title">教育体系</TitleCenterLayout>
 
     <el-row class="max-width-wrap">
