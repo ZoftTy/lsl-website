@@ -1,34 +1,42 @@
-<script setup>
-import { ref } from 'vue'
-import { pushLink } from 'utils/router.js'
+<script script setup>
+import { ref } from "vue";
+import { pushLink } from "utils/router.js";
 
 const props = defineProps({
   id: Number,
   title: String,
-  category: Object,
+  category: String,
   icon: String,
   content: String,
   date: String,
   shadow: {
     type: Boolean,
-    default: true
+    default: true,
   },
   background: {
     type: Boolean,
-    default: true
+    default: true,
   },
   small: {
     type: Boolean,
-    default: false
-  }
-})
-const { id, category } = props
+    default: false,
+  },
+});
+const { id, category } = props;
 
-const url = ref(`/${category.main}/${category.sub}/article/${id}`)
+const url = ref(`/${category}/vocational-${category}/article/${id}`);
+console.log(category);
+// 携手合作分类
+if (category === "institutions" || category === "company" || category === "industry") {
+  url.value = `/cooperation/${category}/article/${id}`;
+}
 </script>
 
 <template>
-  <div class="graphic-item" :class="{ shadow: shadow, background: background, small: small }">
+  <div
+    class="graphic-item"
+    :class="{ shadow: shadow, background: background, small: small }"
+  >
     <el-row class="layout-wrap">
       <el-col class="image-wrap" :md="12">
         <el-image class="image" :src="icon" fit="cover"></el-image>

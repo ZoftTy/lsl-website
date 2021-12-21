@@ -1,41 +1,55 @@
 <script setup>
-import HeaderImageLayout from 'layouts/HeaderImageLayout.vue'
+import HeaderImageLayout from "layouts/HeaderImageLayout.vue";
 
-import { computed, ref } from '@vue/reactivity'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { computed, ref } from "@vue/reactivity";
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
+import { getArticle } from "@/apis/index.js";
 
-const route = useRoute()
+const route = useRoute();
 
 const menuData = [
   {
-    name: 'education',
-    title: '职业教育',
-    url: '/education/vocational-education'
+    name: "education",
+    title: "职业教育",
+    url: "/education/vocational-education",
+    id: 18,
   },
   {
-    name: 'training',
-    title: '职业培训',
-    url: '/education/vocational-training'
-  }
-]
+    name: "training",
+    title: "职业培训",
+    url: "/education/vocational-training",
+    id: 21,
+  },
+];
 
 // 保存数据
-const data = ref([])
-
+const data = ref([]);
+const categoryName = ref("education");
 // 激活的选项
-const active = computed(() => route.params.category)
+const active = computed(() => route.params.category);
 
 // 获取数据的函数
-const getData = async category => {
-  const url = `/data/education-system/vocational-${category}.json`
-  data.value = await fetch(url).then(res => res.json())
-}
+const getData = async (category) => {
+  categoryName.value = category;
+  let id = ref();
+  if (category === "education") {
+    id.value = 18;
+  } else if (category === "training") {
+    id.value = 21;
+  }
+  console.log(id.value);
+  // const url = `/data/education-system/vocational-${category}.json`;
+  // data.value = await fetch(url).then((res) => res.json());
+  getArticle(id.value).then((res) => {
+    data.value = res;
+  });
+};
 
 // 第一次执行
-getData(route.params.category)
+getData(route.params.category);
 
 // 路由更新的时候执行
-onBeforeRouteUpdate(to => getData(to.params.category))
+onBeforeRouteUpdate((to) => getData(to.params.category));
 </script>
 
 <template>
@@ -60,9 +74,9 @@ onBeforeRouteUpdate(to => getData(to.params.category))
         :key="item"
         :id="item.id"
         :title="item.title"
-        :category="item.category"
-        :icon="item.icon"
-        :content="item.content"
+        :category="categoryName"
+        :icon="item.cover"
+        :content="item.description"
         :date="item.date"
       />
     </div>

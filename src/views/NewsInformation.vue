@@ -1,55 +1,69 @@
 <script setup>
-import HeaderImageLayout from 'layouts/HeaderImageLayout.vue'
+import HeaderImageLayout from "layouts/HeaderImageLayout.vue";
 
-import { computed, ref } from '@vue/reactivity'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
-
-const route = useRoute()
+import { computed, ref } from "@vue/reactivity";
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
+import { getArticle } from "@/apis";
+const route = useRoute();
 
 const menuData = [
   {
-    name: 'company',
-    title: '公司新闻',
-    url: '/news/company'
+    name: "company",
+    title: "公司新闻",
+    url: "/news/company",
   },
   {
-    name: 'industry',
-    title: '行业动态',
-    url: '/news/industry'
-  }
-]
+    name: "industry",
+    title: "行业动态",
+    url: "/news/industry",
+  },
+];
 
 // 保存数据
-const data = ref([])
+const data = ref([]);
 
 // 激活的选项
-const active = computed(() => route.params.category)
-
+const active = computed(() => route.params.category);
+const categoryName = ref();
 // 获取数据的函数
-const getData = async category => {
-  const url = `/data/news/${category}.json`
-  data.value = await fetch(url).then(res => res.json())
-}
+const getData = async (category) => {
+  const url = `/data/news/${category}.json`;
+  data.value = await fetch(url).then((res) => res.json());
+
+  categoryName.value = category;
+  let id = ref();
+  if (category === "company") {
+    id.value = 20;
+  } else if (category === "industry") {
+    id.value = 22;
+  }
+  console.log(id.value);
+  // const url = `/data/education-system/vocational-${category}.json`;
+  // data.value = await fetch(url).then((res) => res.json());
+  getArticle(id.value).then((res) => {
+    data.value = res;
+  });
+};
 
 // 第一次执行
-getData(route.params.category)
+getData(route.params.category);
 
 // 路由更新的时候执行
-onBeforeRouteUpdate(to => getData(to.params.category))
+onBeforeRouteUpdate((to) => getData(to.params.category));
 
 // 根据浏览器宽度更改第一个卡片的类型
-const isSmall = ref(false)
-const reloadCarouselType = clientWidth => {
+const isSmall = ref(false);
+const reloadCarouselType = (clientWidth) => {
   if (clientWidth > 768) {
-    isSmall.value = false
+    isSmall.value = false;
   } else {
-    isSmall.value = true
+    isSmall.value = true;
   }
-}
+};
 // 第一次执行
-reloadCarouselType(document.body.clientWidth)
+reloadCarouselType(document.body.clientWidth);
 // 监听浏览器宽度设置
-window.onresize = () => reloadCarouselType(document.body.clientWidth)
+window.onresize = () => reloadCarouselType(document.body.clientWidth);
 </script>
 
 <template>
@@ -83,9 +97,9 @@ window.onresize = () => reloadCarouselType(document.body.clientWidth)
             :small="index == 0 ? isSmall : true"
             :id="item.id"
             :title="item.title"
-            :category="item.category"
-            :icon="item.icon"
-            :content="item.content"
+            :category="categoryName"
+            :icon="item.cover"
+            :content="item.description"
             :date="item.date"
           />
         </el-col>
@@ -142,7 +156,7 @@ window.onresize = () => reloadCarouselType(document.body.clientWidth)
 
     // 线条
     &::after {
-      content: '';
+      content: "";
 
       position: absolute;
 

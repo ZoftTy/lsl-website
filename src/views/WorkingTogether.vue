@@ -1,55 +1,63 @@
 <script setup>
-import HeaderImageLayout from 'layouts/HeaderImageLayout.vue'
+import HeaderImageLayout from "layouts/HeaderImageLayout.vue";
 
-import { computed, reactive, ref } from '@vue/reactivity'
-import { onMounted } from '@vue/runtime-core'
-import { useRoute } from 'vue-router'
+import { computed, reactive, ref } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
+import { useRoute } from "vue-router";
+import { getArticle } from "@/apis/index.js";
 
-const route = useRoute()
+const route = useRoute();
 
 const menuData = [
   {
-    name: 'institutions',
-    title: '合作院校',
-    url: '/cooperation/institutions'
+    name: "institutions",
+    title: "合作院校",
+    url: "/cooperation/institutions",
   },
   {
-    name: 'enterprise',
-    title: '校企合作',
-    url: '/cooperation/enterprise'
-  }
-]
+    name: "enterprise",
+    title: "校企合作",
+    url: "/cooperation/enterprise",
+  },
+];
 
 // 保存数据
 const data = reactive({
   enterprise: {},
-  institutions: {}
-})
-
+  institutions: {},
+});
+const categoryName = ref("institutions");
 // 激活的选项
-const active = computed(() => route.params.category)
+const active = computed(() => route.params.category);
 
 // 获取数据的函数
-const getData = async category => {
-  const url = `/data/cooperation/${category}.json`
-  data[category] = await fetch(url).then(res => res.json())
-}
+const getData = async (category) => {
+  if (category === "institutions") {
+    // 合作院校
+    console.log(category);
+    getArticle(19).then((res) => {
+      data.institutions = res;
+    });
+  } else if (category === "enterprise") {
+    const url = `/data/cooperation/${category}.json`;
+    data[category] = await fetch(url).then((res) => res.json());
+  }
+};
 
 onMounted(() => {
-  getData('institutions')
-  getData('enterprise')
-})
+  getData("institutions");
+  getData("enterprise");
+});
 
-const show = ref(1)
-const showText = ref('显示更多')
+const show = ref(1);
+const showText = ref("显示更多");
 
 const showMore = () => {
   if (show.value > data.institutions.length) {
-    showText.value = '没有更多了'
+    showText.value = "没有更多了";
   }
-  show.value += 4
-}
-
+  show.value += 4;
+};
 </script>
 
 <template>
@@ -68,7 +76,10 @@ const showMore = () => {
     </HeaderImageLayout>
 
     <!-- 合作院校-->
-    <div class="list-wrap max-width-wrap" v-if="route.params.category == 'institutions'">
+    <div
+      class="list-wrap max-width-wrap"
+      v-if="route.params.category == 'institutions'"
+    >
       <GraphicItem
         class="list-item"
         v-for="(item, index) in data.institutions"
@@ -76,9 +87,9 @@ const showMore = () => {
         :key="item"
         :id="item.id"
         :title="item.title"
-        :category="item.category"
-        :icon="item.icon"
-        :content="item.content"
+        :category="categoryName"
+        :icon="item.cover"
+        :content="item.description"
         :date="item.date"
       />
 
@@ -88,14 +99,23 @@ const showMore = () => {
     </div>
 
     <!-- 校企合作 -->
-    <div class="max-width-wrap enterprise" v-if="route.params.category == 'enterprise'">
+    <div
+      class="max-width-wrap enterprise"
+      v-if="route.params.category == 'enterprise'"
+    >
       <el-image class="image-wrap" :src="data.enterprise.icon"></el-image>
       <h4>（一）酒店服务类</h4>
-      <p>广州合兴大酒店有限公司、广东湖景金阁饮食有限公司、广州花都竹缘美食、广州金骏酒店有限公司、广州金联福餐饮有限公司、广州民航大酒店、广州福荟来餐饮服务有限公司广州豪苑酒店有限公司、广州华钜君悦酒店有限公司、中南民航经济发展公司芙蓉会议中心</p>
+      <p>
+        广州合兴大酒店有限公司、广东湖景金阁饮食有限公司、广州花都竹缘美食、广州金骏酒店有限公司、广州金联福餐饮有限公司、广州民航大酒店、广州福荟来餐饮服务有限公司广州豪苑酒店有限公司、广州华钜君悦酒店有限公司、中南民航经济发展公司芙蓉会议中心
+      </p>
       <h4>（二）化妆品轻工业类</h4>
-      <p>广州一兆无纺日化有限公司、广州喜悦生物科技有限公司、丹姿集团（广州市科能化妆品科研有限公司）、广州艾蓓生物科技有限公司</p>
+      <p>
+        广州一兆无纺日化有限公司、广州喜悦生物科技有限公司、丹姿集团（广州市科能化妆品科研有限公司）、广州艾蓓生物科技有限公司
+      </p>
       <h4>（三）电子制造业类</h4>
-      <p>广州科林电器有限公司、佛山鋐利电子有限公司、步步高教育电子有限公司、东莞清溪富崴电子厂、光宝电子（广州）有限公司、广东新宝电器股份有限公司、东莞欧珀精密电子有限公司、广州市尊浪电器有限公司、东莞库柏电子有限公司、深圳思纬市场资讯有限公司广州分公司、佛山顺德北滘塑料电器有限公司、比亚迪股份有限公司、广东泛仕达机电有限公司、广州南联航空食品有限公司、中山TCL制冷设备有限公司、海信广东空调有限公司、佛山振宣精密科技有限公司、广州市亿丰彩印包装有限公司、广州市博泰光学科技有限公司、广州帅著运动用品有限公司、上海苏博眼镜有限公司、广州奥博文具有限公司、广州市恒俊生态农业发展有限公司、广东云山仓储服务有限公司、广州碧源管业有限公司、广州市佳宏电子有限公司</p>
+      <p>
+        广州科林电器有限公司、佛山鋐利电子有限公司、步步高教育电子有限公司、东莞清溪富崴电子厂、光宝电子（广州）有限公司、广东新宝电器股份有限公司、东莞欧珀精密电子有限公司、广州市尊浪电器有限公司、东莞库柏电子有限公司、深圳思纬市场资讯有限公司广州分公司、佛山顺德北滘塑料电器有限公司、比亚迪股份有限公司、广东泛仕达机电有限公司、广州南联航空食品有限公司、中山TCL制冷设备有限公司、海信广东空调有限公司、佛山振宣精密科技有限公司、广州市亿丰彩印包装有限公司、广州市博泰光学科技有限公司、广州帅著运动用品有限公司、上海苏博眼镜有限公司、广州奥博文具有限公司、广州市恒俊生态农业发展有限公司、广东云山仓储服务有限公司、广州碧源管业有限公司、广州市佳宏电子有限公司
+      </p>
     </div>
   </div>
 </template>

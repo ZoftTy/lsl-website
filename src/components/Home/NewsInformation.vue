@@ -1,5 +1,52 @@
 <script setup>
-import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
+import TitleCenterLayout from "layouts/TitleCenterLayout.vue";
+import { useRouter } from "vue-router";
+import { reactive, ref } from "@vue/reactivity";
+import { getArticle } from "@/apis/index.js";
+const router = useRouter();
+const newList = ref([
+  {
+    image: "/images/carousel/1.jpg",
+    date: "2020-03-17",
+    title: "广东省高新技术职业培训学院",
+    content:
+      "广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。",
+    url: "/education/vocational-education/article/4",
+  },
+  {
+    image: "/images/carousel/1.jpg",
+    date: "2020-03-17",
+    title: "广东省高新技术职业培训学院",
+    content:
+      "广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。",
+    url: "/education/vocational-education/article/4",
+  },
+  {
+    image: "/images/carousel/1.jpg",
+    date: "2020-03-17",
+    title: "广东省高新技术职业培训学院",
+    content:
+      "广东省高新技术职业培训学院成立于2008年，是一所培养中、高级技能人才的省属全日制省重点技工学校。学校坐落在广州北站枢纽，广州新机场经济圈内，毗邻花都空港经济区、广州万达文化旅游城、花都汽车城、花都珠宝城、狮岭国际皮具城等大型工、商业园区，交通便利，环境优越，企业云集，可为学子提供良好的实习就业平台。",
+    url: "/education/vocational-education/article/4",
+  },
+]);
+const total = ref(0);
+const page = ref(1);
+const init = (number) => {
+  getArticle(20, 5, true, number).then((res) => {
+    newList.value = res;
+    total.value = newList.value.length;
+    console.log(total.value);
+  });
+};
+init(page.value);
+const toDetail = (id) => {
+  router.push(`/news/industry/article/${id}`);
+};
+const pageNumberChange = (number) => {
+  page.value = number;
+  init(page.value);
+};
 </script>
 
 <template>
@@ -9,28 +56,37 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
     <el-row :gutter="15" class="item-wrap">
       <el-col
         class="item"
-        v-for="(item, index) in [1, 2, 3, 4, 5]"
+        v-for="(item, index) in newList"
         :md="{ span: 4, offset: index == 0 ? 2 : 0 }"
       >
-        <router-link to="/news/industry/article/1">
-          <img src="~/assets/images/businessCenter-01.png" alt />
+        <a href="javascript:;" @click="toDetail(item.id)">
+          <img :src="item.cover" alt />
           <div class="content">
-            <h4>人民日报：双师课堂，为在线教育保驾续航</h4>
+            <h4>{{ item.title }}</h4>
             <span class="line"></span>
-            <p>科技教育集团技术中台推出教研神器——情境化互动教学课件创作平台。</p>
+            <p>
+              {{ item.description }}
+            </p>
           </div>
-        </router-link>
+        </a>
       </el-col>
     </el-row>
     <el-row justify="center">
       <el-col class="item-controller">
-        <el-pagination :pager-count="5" small background layout="prev, pager, next" :total="50"></el-pagination>
+        <el-pagination
+          :page-size="5"
+          small
+          background
+          layout="prev, pager, next"
+          :total="10"
+          @current-change="pageNumberChange"
+        ></el-pagination>
       </el-col>
     </el-row>
   </div>
 </template>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 // 新闻资讯
 .news-information {
   padding-top: 20px;
@@ -48,6 +104,9 @@ import TitleCenterLayout from 'layouts/TitleCenterLayout.vue'
       top: 0;
 
       width: 100%;
+      height: 120px;
+
+      overflow: hidden;
 
       cursor: pointer;
 
