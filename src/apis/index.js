@@ -15,3 +15,7 @@ export const getArticle = (
     );
   }
 };
+// 获取轮播图数据
+export const getCarouselList = () => {
+  return axios.get(`/settings/carousel`);
+};

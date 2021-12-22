@@ -1,19 +1,33 @@
 <script setup>
-import CorporateCulture from 'components/Home/CorporateCulture.vue'
-import BusinessCenter from 'components/Home/BusinessCenter.vue'
-import EducationSystem from 'components/Home/EducationSystem.vue'
-import WorkingTogether from 'components/Home/WorkingTogether.vue'
-import NewsInformation from 'components/Home/NewsInformation.vue'
-import AboutUs from 'components/Home/AboutUs.vue'
+import CorporateCulture from "components/Home/CorporateCulture.vue";
+import BusinessCenter from "components/Home/BusinessCenter.vue";
+import EducationSystem from "components/Home/EducationSystem.vue";
+import WorkingTogether from "components/Home/WorkingTogether.vue";
+import NewsInformation from "components/Home/NewsInformation.vue";
+import AboutUs from "components/Home/AboutUs.vue";
 
-import { reactive } from '@vue/reactivity'
-
+import { getCarouselList } from "@/apis";
+import { reactive, ref } from "vue";
 // 轮播图数据
-const carouselList = reactive([
-  '/images/carousel/1.jpg'
-  // '/images/carousel/2.jpg',
-  // '/images/carousel/3.jpg'
-])
+const carouselList = ref([
+  {
+    date: "2021-12-08 20:12:34",
+    url: "http://zoft.work:1330/images/61b06e2cabfc4.png",
+  },
+  {
+    date: "2021-12-08 20:12:34",
+    url: "http://zoft.work:1330/images/61b06e2cabfc4.png",
+  },
+  {
+    date: "2021-12-08 20:12:34",
+    url: "http://zoft.work:1330/images/61b06e2cabfc4.png",
+  },
+]);
+
+getCarouselList().then((res) => {
+  console.log(res);
+  carouselList.value = res;
+});
 </script>
 
 <template>
@@ -21,7 +35,7 @@ const carouselList = reactive([
     <!-- 轮播图 -->
     <el-carousel trigger="click" height="var(--carousel-height)">
       <el-carousel-item v-for="item in carouselList" :key="item">
-        <img class="carousel-img" :src="item" alt="" />
+        <img class="carousel-img" :src="item.url" alt="" />
       </el-carousel-item>
     </el-carousel>
 
