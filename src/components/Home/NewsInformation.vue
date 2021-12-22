@@ -35,8 +35,9 @@ const page = ref(1);
 const init = (number) => {
   getArticle(20, 5, true, number).then((res) => {
     newList.value = res;
-    total.value = newList.value.length;
-    console.log(total.value);
+  });
+  getArticle(20, 0, true, number).then((res) => {
+    total.value = res.length;
   });
 };
 init(page.value);
@@ -78,7 +79,7 @@ const pageNumberChange = (number) => {
           small
           background
           layout="prev, pager, next"
-          :total="10"
+          :total="total"
           @current-change="pageNumberChange"
         ></el-pagination>
       </el-col>

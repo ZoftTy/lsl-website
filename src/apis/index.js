@@ -6,7 +6,12 @@ export const getArticle = (
   nominate = true,
   page = 1
 ) => {
-  return axios.get(
-    `/articles?category=${categoryId}&limit=${limit}&nominate=${nominate}&page=${page}`
-  );
+  if (limit === 0) {
+    // 0为不限制
+    return axios.get(`/articles?category=${categoryId}&nominate=${nominate}`);
+  } else {
+    return axios.get(
+      `/articles?category=${categoryId}&limit=${limit}&nominate=${nominate}&page=${page}`
+    );
+  }
 };

@@ -21,30 +21,39 @@ const menuData = [
 
 // 保存数据
 const data = ref([]);
-
+const total = ref(0);
+const page = ref(1);
+// 初始化
+const init = (id, number) => {
+  console.log(id, number);
+  getArticle(id, 3, true, number).then((res) => {
+    data.value = res;
+  });
+  getArticle(id, 0, true, number).then((res) => {
+    total.value = res.length;
+  });
+};
 // 激活的选项
 const active = computed(() => route.params.category);
 const categoryName = ref();
+let id = ref();
 // 获取数据的函数
 const getData = async (category) => {
-  const url = `/data/news/${category}.json`;
-  data.value = await fetch(url).then((res) => res.json());
-
   categoryName.value = category;
-  let id = ref();
+
   if (category === "company") {
     id.value = 20;
   } else if (category === "industry") {
     id.value = 22;
   }
-  console.log(id.value);
-  // const url = `/data/education-system/vocational-${category}.json`;
-  // data.value = await fetch(url).then((res) => res.json());
-  getArticle(id.value).then((res) => {
-    data.value = res;
-  });
+  init(id.value, page.value);
 };
-
+// 页码改变
+const pageNumberChange = (number) => {
+  page.value = number;
+  console.log(number, 123);
+  init(id.value, page.value);
+};
 // 第一次执行
 getData(route.params.category);
 
@@ -109,10 +118,11 @@ window.onresize = () => reloadCarouselType(document.body.clientWidth);
     <el-row justify="center">
       <el-col class="item-controller">
         <el-pagination
-          :pager-count="5"
+          :page-size="3"
           background
           layout="prev, pager, next"
-          :total="50"
+          :total="total"
+          @current-change="pageNumberChange"
         ></el-pagination>
       </el-col>
     </el-row>

@@ -1,16 +1,30 @@
 <script setup>
-import { pushLink } from 'utils/router.js'
+import { pushLink } from "utils/router.js";
+import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
 
+const route = useRoute();
+const router = useRouter();
+console.log(route.fullPath);
+let urlStr = ref(route.fullPath.split("/"));
+urlStr.value.pop();
+urlStr.value = urlStr.value.join("/");
+console.log(urlStr.value);
+
+const goDetail = (id) => {
+  console.log(id);
+  router.push(urlStr.value + "/" + id);
+};
 defineProps({
   image: String,
   title: String,
   date: String,
-  url: String
-})
+  articleId: Number,
+});
 </script>
 
 <template>
-  <el-row class="recommended" @click="pushLink(url)">
+  <el-row class="recommended" @click="goDetail(articleId)">
     <el-col class="image-wrap" :md="10">
       <img :src="image" alt />
     </el-col>

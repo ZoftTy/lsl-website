@@ -1,36 +1,41 @@
 <script setup>
-import { marked } from 'marked'
+import { marked } from "marked";
 
-import { ref } from '@vue/reactivity'
+import { ref } from "@vue/reactivity";
 
-import { onMounted } from '@vue/runtime-core';
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
-
-const route = useRoute()
-
-const { category, sub, id } = route.params
+import { onMounted } from "@vue/runtime-core";
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
+import { getArticle } from "@/apis";
 
 
-const article = ref({})
+const route = useRoute();
 
+const { category, sub, id } = route.params;
+
+const article = ref({});
+// 推荐列表
+const nominateList = ref([]);
 const getData = async (id) => {
-  const url = `http://zoft.work:1330/articles/${id}`
-  const data = await fetch(url).then(res => res.json())
-
+  const url = `http://zoft.work:1330/articles/${id}`;
+  const data = await fetch(url).then((res) => res.json());
+  console.log(data);
   // 将markdown渲染成html
-  data.content = marked(data.content)
-
-  return data
-}
+  data.content = marked(data.content);
+  // 获取推荐列表
+  getArticle(data.category, 5).then((res) => {
+    console.log(res);
+    nominateList.value = res;
+  });
+  return data;
+};
 
 onMounted(async () => {
-  article.value = await getData(id)
-})
+  article.value = await getData(id);
+});
 
 onBeforeRouteUpdate(async ({ params }) => {
-  article.value = await getData(params.id)
-})
-
+  article.value = await getData(params.id);
+});
 </script>
 
 <template>
@@ -44,11 +49,11 @@ onBeforeRouteUpdate(async ({ params }) => {
       <el-col :md="6" class="recommended-wrap">
         <h3>文章推荐</h3>
         <RecommendedItem
-          v-for="item in [1, 2, 3, 4]"
-          title="广东省高新技术职业培训学院"
-          date="2020-03-17"
-          image="https://xibaiimg.gz.bcebos.com/hongshulinjy/5e706f479f9c32.48762827.jpg"
-          url="/education/vocational-education/article/4"
+          v-for="item in nominateList"
+          :title="item.title"
+          :date="item.date"
+          :image="item.cover"
+          :articleId="item.id"
         />
       </el-col>
     </el-row>
