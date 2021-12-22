@@ -34,7 +34,7 @@ const active = computed(() => route.params.category);
 const getData = async (category) => {
   if (category === "institutions") {
     // 合作院校
-    console.log(category);
+    // console.log(category);
     getArticle(19).then((res) => {
       data.institutions = res;
     });

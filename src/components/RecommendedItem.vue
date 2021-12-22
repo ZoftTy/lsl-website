@@ -5,14 +5,14 @@ import { ref } from "vue";
 
 const route = useRoute();
 const router = useRouter();
-console.log(route.fullPath);
+// console.log(route.fullPath);
 let urlStr = ref(route.fullPath.split("/"));
 urlStr.value.pop();
 urlStr.value = urlStr.value.join("/");
-console.log(urlStr.value);
+// console.log(urlStr.value);
 
 const goDetail = (id) => {
-  console.log(id);
+  // console.log(id);
   router.push(urlStr.value + "/" + id);
 };
 defineProps({

@@ -55,9 +55,9 @@ const workingTogetherData = ref([
 ]);
 
 getArticle(19).then((res) => {
-  console.log(res);
+  // console.log(res);
   workingTogetherData.value = res;
-  console.log(workingTogetherData.value);
+  // console.log(workingTogetherData.value);
 });
 const toDetail = (id) => {
   router.push(`/cooperation/institutions/article/${id}`);

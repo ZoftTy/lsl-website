@@ -18,12 +18,12 @@ const nominateList = ref([]);
 const getData = async (id) => {
   const url = `http://zoft.work:1330/articles/${id}`;
   const data = await fetch(url).then((res) => res.json());
-  console.log(data);
+  // console.log(data);
   // 将markdown渲染成html
   data.content = marked(data.content);
   // 获取推荐列表
   getArticle(data.category, 5).then((res) => {
-    console.log(res);
+    // console.log(res);
     nominateList.value = res;
   });
   return data;

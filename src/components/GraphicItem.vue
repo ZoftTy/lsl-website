@@ -25,7 +25,7 @@ const props = defineProps({
 const { id, category } = props;
 
 const url = ref(`/${category}/vocational-${category}/article/${id}`);
-console.log(category);
+// console.log(category);
 // 携手合作分类
 if (category === "institutions" || category === "company" || category === "industry") {
   url.value = `/cooperation/${category}/article/${id}`;

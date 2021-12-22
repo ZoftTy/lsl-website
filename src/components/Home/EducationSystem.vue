@@ -36,7 +36,7 @@ const educationData = ref([
 // 请求教育体系
 getArticle(18).then((res) => {
   educationData.value = res;
-  console.log(educationData.value);
+  // console.log(educationData.value);
 });
 const toDetail = (id) => {
   router.push(`/education/vocational-education/article/${id}`);

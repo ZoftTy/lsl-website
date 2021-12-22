@@ -37,7 +37,7 @@ const getData = async (category) => {
   } else if (category === "training") {
     id.value = 21;
   }
-  console.log(id.value);
+  // console.log(id.value);
   // const url = `/data/education-system/vocational-${category}.json`;
   // data.value = await fetch(url).then((res) => res.json());
   getArticle(id.value).then((res) => {

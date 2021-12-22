@@ -25,7 +25,7 @@ const total = ref(0);
 const page = ref(1);
 // 初始化
 const init = (id, number) => {
-  console.log(id, number);
+  // console.log(id, number);
   getArticle(id, 3, true, number).then((res) => {
     data.value = res;
   });
@@ -51,7 +51,7 @@ const getData = async (category) => {
 // 页码改变
 const pageNumberChange = (number) => {
   page.value = number;
-  console.log(number, 123);
+  // console.log(number, 123);
   init(id.value, page.value);
 };
 // 第一次执行
