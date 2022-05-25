@@ -12,15 +12,15 @@ import { reactive, ref } from "vue";
 const carouselList = ref([
   {
     date: "2021-12-08 20:12:34",
-    url: "http://zoft.work:1330/images/61b06e2cabfc4.png",
+    url: "https://xibaiimg.gz.bcebos.com/hongshulinjy/5f6afc1e6eaa36.75172028.jpg",
   },
   {
     date: "2021-12-08 20:12:34",
-    url: "http://zoft.work:1330/images/61b06e2cabfc4.png",
+    url: "https://xibaiimg.gz.bcebos.com/hongshulinjy/5f6afc1e744878.14061921.jpg",
   },
   {
     date: "2021-12-08 20:12:34",
-    url: "http://zoft.work:1330/images/61b06e2cabfc4.png",
+    url: "https://xibaiimg.gz.bcebos.com/hongshulinjy/60822bf6be5a66.96361689.jpg",
   },
 ]);
 
